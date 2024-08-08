@@ -39,11 +39,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 1; /* Ensure dropdown button is the same size */
 }
 
 .dropbtn {
     background-color: #333;
     height: 100%;
+    border: none; /* Ensure no border */
 }
 
 .dropdown-content {
