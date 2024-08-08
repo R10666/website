@@ -24,18 +24,10 @@ body {
     align-items: center;
     justify-content: center;
     height: 100%;
-    border: none; /* Remove default border */
+    border: none; /* Remove borders */
     background: none; /* Remove default background */
     cursor: pointer; /* Show pointer cursor */
-}
-
-.top-bar-button {
     flex: 1; /* Equal width for each button */
-    border-right: 1px solid #444; /* Add divider between buttons */
-}
-
-.top-bar-button:last-child {
-    border-right: none; /* Remove divider for the last button */
 }
 
 .top-bar-button:hover, .dropbtn:hover {
