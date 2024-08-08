@@ -43,12 +43,13 @@ h1 {
 .row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 20px;
+    gap: 20px; /* Space between blocks */
 }
 
 .column {
-    width: 300px; /* Fixed width for each block */
+    flex: 1 1 calc(33.333% - 40px); /* Three items per row with space */
     height: 300px; /* Fixed height to maintain aspect ratio */
     position: relative;
     overflow: hidden;
@@ -64,9 +65,12 @@ h1 {
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s;
-    margin: 10px; /* Space between blocks */
 }
 
 .column:hover {
     transform: scale(1.1); /* Slightly larger hover effect */
+}
+
+.column span {
+    pointer-events: none; /* Ensure the text doesn't interfere with link clicking */
 }
