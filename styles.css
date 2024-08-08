@@ -50,7 +50,7 @@ h1 {
 
 .column {
     flex: 1 1 calc(33.333% - 40px); /* Three items per row with space */
-    height: 300px; /* Fixed height to maintain aspect ratio */
+    height: 3000px; /* Fixed height to maintain aspect ratio */
     position: relative;
     overflow: hidden;
     border-radius: 10px;
