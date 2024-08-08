@@ -43,23 +43,24 @@ h1 {
 .projects-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: 20px;
     padding: 20px;
 }
 
 .project-link {
     text-decoration: none;
+    flex: 1 1 calc(33.333% - 40px); /* Allow three per row, with gaps */
+    max-width: calc(33.333% - 40px);
 }
 
 .project {
     position: relative;
-    width: calc(33.333% - 40px); /* Three items per row with some spacing */
-    padding-bottom: calc(33.333% - 40px); /* Makes the div a square */
+    width: 100%;
+    padding-bottom: 100%; /* Makes the div a square */
     overflow: hidden;
     border-radius: 10px;
     transition: transform 0.3s;
-    margin: 10px;
 }
 
 .project img {
@@ -81,7 +82,7 @@ h1 {
     font-size: 24px;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    pointer-events: none; /* Ensure the text doesn't interfere with link clicking */
+    pointer-events: none;
 }
 
 .project:hover {
