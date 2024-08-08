@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -6,27 +11,10 @@
 }
 
 .column {
-    flex: 1 1 calc(33.333% - 20px); /* Width accounting for spacing */
-    height: 300px; /* Fixed height */
+    flex: 1 1 calc(33.333% - 20px); /* Three items per row with spacing */
+    height: 300px; /* Fixed height for images */
     background-size: cover;
     background-position: center;
-    text-decoration: none;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s;
-    margin: 10px; /* Space around blocks */
-    position: relative;
-}
-
-.column span {
-    position: absolute; /* Center text in the block */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none; /* Ensure text does not interfere with clicking */
+    border-radius: 10px; /* Optional: rounded corners */
+    margin: 10px; /* Space between blocks */
 }
