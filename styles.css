@@ -1,13 +1,59 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+nav ul li {
+    flex: 1;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #111;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px;
+    gap: 20px; /* Space between blocks */
 }
 
 .column {
-    flex: 1 1 calc(33.333% - 20px); /* Width accounting for spacing */
-    height: 300px; /* Fixed height */
+    flex: 1 1 calc(33.333% - 40px); /* Three items per row with space */
+    height: 3000px; /* Fixed height to maintain aspect ratio */
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
     background-size: cover;
     background-position: center;
     text-decoration: none;
@@ -19,14 +65,12 @@
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s;
-    margin: 10px; /* Space around blocks */
-    position: relative;
+}
+
+.column:hover {
+    transform: scale(1.1); /* Slightly larger hover effect */
 }
 
 .column span {
-    position: absolute; /* Center text in the block */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none; /* Ensure text does not interfere with clicking */
+    pointer-events: none; /* Ensure the text doesn't interfere with link clicking */
 }
