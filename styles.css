@@ -61,18 +61,9 @@ h1 {
   clear: both;
 }
 
-/* Responsive columns for smaller screens */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 10px;
-  }
-}
-
 /* Style the counter cards */
 .card {
-  background-image: url('images/placeholder.png'); /* Background image */
+  background-image: url('../images/placeholder.png'); /* Background image */
   background-size: cover; /* Cover the entire block */
   background-position: center; /* Center the image */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -85,11 +76,4 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #444; /* Default background color */
-}
-
-/* Style for icons */
-.fa {
-  font-size: 50px;
-  margin-bottom: 15px; /* Space between icon and text */
 }
