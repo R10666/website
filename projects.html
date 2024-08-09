@@ -5,9 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Webpage</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Extra styles for sticky bar and color change */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .top-bar.sticky {
+            background-color: #555; /* Change color when sticky */
+        }
+    </style>
 </head>
 <body>
-    <div class="top-bar" style="position: sticky; top: 0; z-index: 1000;">
+    <div class="top-bar" id="topBar">
         <a href="page1.html" class="top-bar-button">Page 1</a>
         <a href="page2.html" class="top-bar-button">Page 2</a>
         <a href="page3.html" class="top-bar-button">Page 3</a>
@@ -35,20 +49,25 @@
             <div class="image-button-text">Project 3</div>
         </a>
     </div>
-    <div class="content">
-        <a href="item_1.html" class="image-button">
-            <div class="image-button-text">Project 1</div>
-        </a>
-        <a href="item_1.html" class="image-button">
-            <div class="image-button-text">Project 2</div>
-        </a>
-        <a href="item_1.html" class="image-button">
-            <div class="image-button-text">Project 3</div>
-        </a>
-    </div>
     <div class="footer">
         <p class="footer-left">Created by ___</p>
         <p class="footer-right">&copy; 2024</p>
     </div>
+
+    <script>
+        // JavaScript to change the background color when sticky
+        window.onscroll = function() {makeSticky()};
+
+        var topBar = document.getElementById("topBar");
+        var sticky = topBar.offsetTop;
+
+        function makeSticky() {
+            if (window.pageYOffset > sticky) {
+                topBar.classList.add("sticky");
+            } else {
+                topBar.classList.remove("sticky");
+            }
+        }
+    </script>
 </body>
 </html>

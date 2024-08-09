@@ -5,11 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item 1</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Extra styles for sticky bar and color change */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .top-bar.sticky {
+            background-color: #555; /* Change color when sticky */
+        }
+
+        /* Adjust other styles if needed */
+        .content-container {
+            padding: 2em;
+        }
+
+        .content-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2em;
+        }
+
+        .content-text {
+            flex: 1;
+            margin-right: 2em;
+        }
+
+        .content-image {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .content-section:nth-child(odd) .content-image {
+            order: -1; /* Swap the order for odd sections */
+        }
+    </style>
 </head>
 <body>
 
     <!-- Top Bar with Back Button -->
-    <div class="top-bar">
+    <div class="top-bar" id="topBar">
         <a href="projects.html" class="top-bar-button">
             &#8592; Back
         </a>
@@ -41,8 +81,6 @@
                 <img src="/images/placeholder.png" alt="Placeholder Image">
             </div>
         </div>
-
-        <!-- Add more alternating sections as needed -->
     </div>
 
     <!-- Footer -->
@@ -51,5 +89,20 @@
         <div class="footer-right">©2024</div>
     </div>
 
+    <script>
+        // JavaScript to change the background color when sticky
+        window.onscroll = function() {makeSticky()};
+
+        var topBar = document.getElementById("topBar");
+        var sticky = topBar.offsetTop;
+
+        function makeSticky() {
+            if (window.pageYOffset > sticky) {
+                topBar.classList.add("sticky");
+            } else {
+                topBar.classList.remove("sticky");
+            }
+        }
+    </script>
 </body>
 </html>
