@@ -3,19 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - My Personal Website</title>
+    <title>My Webpage</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    <h1>Welcome to my website</h1>
-    <script src="script.js"></script>
+    <div class="top-bar" style="position: sticky; top: 0; z-index: 1000;">
+        <a href="page1.html" class="top-bar-button">Page 1</a>
+        <a href="page2.html" class="top-bar-button">Page 2</a>
+        <a href="page3.html" class="top-bar-button">Page 3</a>
+        <a href="page4.html" class="top-bar-button">Page 4</a>
+        <div class="dropdown">
+            <button class="dropbtn">More</button>
+            <div class="dropdown-content">
+                <a href="page5.html">Page 5</a>
+                <a href="page6.html">Page 6</a>
+                <a href="page7.html">Page 7</a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-image">
+        <h1 class="hero-title">My Awesome Projects</h1>
+    </div>
+    <div class="footer">
+        <p class="footer-left">Created by ___</p>
+        <p class="footer-right">&copy; 2024</p>
+    </div>
 </body>
 </html>
