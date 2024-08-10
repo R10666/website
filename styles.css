@@ -191,10 +191,11 @@ body {
 }
 
 .hero-image img {
-    border-radius: 8px;
+    border-radius: 50%; /* Rounded corners, 50% makes it circular if the image is square */
     max-width: 100%;
     height: auto;
 }
+
 
 .hero-text {
     padding-left: 2em;
