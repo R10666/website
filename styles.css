@@ -186,6 +186,8 @@ body {
     background-size: cover;
     background-position: center;
     background-color: #f5f5f5;
+    box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.3); /* Added shadow */
+    margin-bottom: 20px; /* Space below the hero section */
 }
 
 .hero-image img {
