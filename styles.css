@@ -216,7 +216,9 @@ body {
 .content-container {
     background-color: white;
     padding: 2em;
+    text-align: left; /* Align text to the left */
 }
+
 
 .content-container h2 {
     text-align: center;
@@ -235,11 +237,11 @@ body {
     padding: 4em 1em; /* Increase padding for index page only */
     min-height: 350px; /* Set a minimum height for the section on index page only */
 }
-/* Styles for About Me Section */
 
+/* Styles for About Me Section */
 .about-me {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Align children to the start (left) */
     align-items: flex-start;
     margin-top: 2em;
 }
@@ -262,6 +264,7 @@ body {
     padding-left: 20px;
     margin: 0;
 }
+
 
 
 /* Responsive Styles */
