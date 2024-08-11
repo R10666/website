@@ -235,6 +235,33 @@ body {
     padding: 4em 1em; /* Increase padding for index page only */
     min-height: 350px; /* Set a minimum height for the section on index page only */
 }
+/* Styles for About Me Section */
+.about-me {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 2em;
+}
+
+.about-me-text {
+    flex: 1;
+    margin-right: 2em;
+}
+
+.about-me-hobbies {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-me-hobbies ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
