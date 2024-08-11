@@ -181,7 +181,7 @@ body {
 .hero-section {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* Space between items */
     padding: 2em;
     background-size: cover;
     background-position: center;
@@ -194,13 +194,16 @@ body {
     border-radius: 8px;
     max-width: 100%;
     height: auto;
+    flex: 1; /* Allow the image to take available space */
 }
 
 .hero-text {
     padding-left: 2em;
     color: #333;
     max-width: 600px; /* Set a maximum width for the hero text container */
+    flex: 2; /* Allow the text to take more space than the image */
 }
+
 
 .hero-text h1 {
     font-size: 2.5em;
