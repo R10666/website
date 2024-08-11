@@ -236,6 +236,7 @@ body {
     min-height: 350px; /* Set a minimum height for the section on index page only */
 }
 /* Styles for About Me Section */
+
 .about-me {
     display: flex;
     justify-content: space-between;
@@ -244,12 +245,12 @@ body {
 }
 
 .about-me-text {
-    flex: 1;
+    flex: 3; /* Takes up 3/4 of the space */
     margin-right: 2em;
 }
 
 .about-me-hobbies {
-    flex: 1;
+    flex: 1; /* Takes up 1/4 of the space */
     background-color: #f9f9f9;
     padding: 1em;
     border-radius: 8px;
