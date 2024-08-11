@@ -212,16 +212,16 @@ body {
     color: #555;
 }
 
+
 /* Styles for Content Container */
 .content-container {
     background-color: white;
     padding: 2em;
-    text-align: left; /* Align text to the left */
+    text-align: left; /* Ensure all text is left-aligned */
 }
 
-
 .content-container h2 {
-    text-align: center;
+    text-align: left; /* Align the title to the left */
     font-size: 2em;
     margin-bottom: 1.5em;
     color: #333;
@@ -237,7 +237,6 @@ body {
     padding: 4em 1em; /* Increase padding for index page only */
     min-height: 350px; /* Set a minimum height for the section on index page only */
 }
-
 /* Styles for About Me Section */
 .about-me {
     display: flex;
