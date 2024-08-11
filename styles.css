@@ -232,7 +232,7 @@ body {
 /* Specific Styles for Index Hero Section */
 .index-hero {
     padding: 4em 1em; /* Increase padding for index page only */
-    min-height: 400px; /* Set a minimum height for the section on index page only */
+    min-height: 350px; /* Set a minimum height for the section on index page only */
 }
 
 /* Responsive Styles */
