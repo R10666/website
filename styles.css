@@ -229,6 +229,12 @@ body {
     color: #555;
 }
 
+/* Specific Styles for Index Hero Section */
+.index-hero {
+    padding: 4em 1em; /* Increase padding for index page only */
+    min-height: 400px; /* Set a minimum height for the section on index page only */
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .image-button {
