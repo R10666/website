@@ -178,32 +178,53 @@ body {
 }
 
 /* Styles for Hero Section */
+/* Styles for Hero Section */
 .hero-section {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between; /* Space between items */
     padding: 2em;
     background-size: cover;
     background-position: center;
     background-color: #f5f5f5;
     box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.3); /* Added shadow */
     margin-bottom: 20px; /* Space below the hero section */
+    height: 100vh; /* Full viewport height */
 }
 
-.hero-image img {
+.hero-content {
+    display: flex;
+    width: 100%;
+}
+
+.hero-image-container, .hero-text-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+}
+
+.hero-image-container {
+    justify-content: flex-start;
+}
+
+.hero-text-container {
+    justify-content: flex-end;
+}
+
+/* Ensure the image scales properly */
+.hero-image-container img {
     border-radius: 8px;
     max-width: 100%;
     height: auto;
-    flex: 1; /* Allow the image to take available space */
 }
 
 .hero-text {
-    padding-left: 2em;
     color: #333;
     max-width: 600px; /* Set a maximum width for the hero text container */
-    flex: 2; /* Allow the text to take more space than the image */
+    text-align: center;
 }
-
 
 .hero-text h1 {
     font-size: 2.5em;
