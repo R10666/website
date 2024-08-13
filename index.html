@@ -83,6 +83,8 @@
         const maxDistance = 100;
         const trailLifetime = 1000;  // Trail lifetime in milliseconds
         const friction = 0.98;
+        const particleColor = '#ff6600';  // Orange color
+        const lineColor = '#333333';  // Dark color
 
         class Particle {
             constructor(x, y) {
@@ -106,7 +108,7 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-                ctx.fillStyle = '#fff';
+                ctx.fillStyle = particleColor;
                 ctx.fill();
             }
         }
@@ -128,7 +130,7 @@
                 if (this.alpha > 0) {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, 5, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                    ctx.fillStyle = `rgba(255, 102, 0, ${this.alpha})`;  // Orange color with fading alpha
                     ctx.fill();
                 }
             }
@@ -149,7 +151,7 @@
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / maxDistance})`;
+                        ctx.strokeStyle = `rgba(51, 51, 51, ${1 - distance / maxDistance})`;  // Dark line with fading alpha
                         ctx.stroke();
                     }
                 }
