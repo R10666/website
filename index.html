@@ -24,9 +24,10 @@
         </div>
     </div>
 
-    <!-- Hero Section with Rough Paper Background -->
-    <div class="hero-section index-hero" style="background-image: url('/images/wooden_bg.jpg'); background-size: cover; padding: 4em 1em;">
-        <div class="hero-content" style="display: flex; align-items: center;">
+    <!-- Hero Section with Interactive Background -->
+    <div class="hero-section index-hero" style="position: relative; padding: 4em 1em;">
+        <canvas id="hero-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+        <div class="hero-content" style="display: flex; align-items: center; position: relative; z-index: 1;">
             <img src="/images/placeholder.png" alt="Your Photo" style="border-radius: 8px; max-width: 100%; height: auto;">
             <div class="hero-text" style="flex: 2; padding-left: 2em;">
                 <div style="text-align: center;">
@@ -43,7 +44,7 @@
 
     <!-- Content Section with Normal White Background -->
     <div class="content-container" style="background-color: white; padding: 2em 1em;">
-        <h2 style="text-align: left; font-size: 2em; margin-bottom: 1.5em; color: #333;">     More About Me</h2>
+        <h2 style="text-align: left; font-size: 2em; margin-bottom: 1.5em; color: #333;">More About Me</h2>
         <div class="about-me">
             <div class="about-me-text">
                 <p style="font-size: 1.2em; color: #555;">
@@ -63,27 +64,153 @@
         </div>
     </div>
 
-
     <!-- Footer -->
     <div class="footer">
         <p class="footer-left">Created by ___</p>
         <p class="footer-right">&copy; 2024</p>
     </div>
-     <script>
-        const cursor = document.querySelector('.cursor');
-        const circle = document.querySelector('.circle');
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-            circle.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(0.5)`;
+    <!-- Script for Interactive Background -->
+    <script>
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = document.querySelector('.hero-section').offsetHeight;
+
+        const particles = [];
+        const trail = [];
+        const numParticles = 100;
+        const maxDistance = 100;
+        const trailLifetime = 1000;  // Trail lifetime in milliseconds
+        const friction = 0.98;
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vx = Math.random() * 0.5 - 0.25;
+                this.vy = Math.random() * 0.5 - 0.25;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                this.vx *= friction;
+                this.vy *= friction;
+
+                if (this.x > canvas.width || this.x < 0) this.vx *= -1;
+                if (this.y > canvas.height || this.y < 0) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = '#fff';
+                ctx.fill();
+            }
+        }
+
+        class TrailPoint {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.alpha = 1;
+                this.timestamp = Date.now();
+            }
+
+            update() {
+                const age = Date.now() - this.timestamp;
+                this.alpha = 1 - age / trailLifetime;
+            }
+
+            draw() {
+                if (this.alpha > 0) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 5, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                    ctx.fill();
+                }
+            }
+
+            isAlive() {
+                return this.alpha > 0;
+            }
+        }
+
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const distance = Math.sqrt(
+                        (particles[i].x - particles[j].x) ** 2 +
+                        (particles[i].y - particles[j].y) ** 2
+                    );
+                    if (distance < maxDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / maxDistance})`;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function drawTrail() {
+            for (let i = 0; i < trail.length; i++) {
+                trail[i].update();
+                trail[i].draw();
+            }
+
+            // Remove dead trail points
+            while (trail.length > 0 && !trail[0].isAlive()) {
+                trail.shift();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < numParticles; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                particles.push(new Particle(x, y));
+            }
+            animate();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            connectParticles();
+            drawTrail();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = document.querySelector('.hero-section').offsetHeight;
         });
 
-        document.addEventListener('click', () => {
-            circle.style.transform = 'translate(-50%, -50%) scale(1)';
-            setTimeout(() => {
-                circle.style.transform = 'translate(-50%, -50%) scale(0.5)';
-            }, 150);
+        canvas.addEventListener('mousemove', (e) => {
+            trail.push(new TrailPoint(e.clientX, e.clientY));
+
+            particles.forEach(particle => {
+                const dx = particle.x - e.clientX;
+                const dy = particle.y - e.clientY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < maxDistance) {
+                    particle.vx += dx * 0.005;
+                    particle.vy += dy * 0.005;
+                }
+            });
         });
+
+        init();
     </script>
 </body>
 </html>
