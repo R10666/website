@@ -96,7 +96,7 @@
 
         const particles = [];
         const trail = [];
-        const numParticles = 100;
+        const numParticles = 200;
         const maxDistance = 100;
         const trailLifetime = 1000;  // Trail lifetime in milliseconds
         const friction = 0.98;
@@ -215,7 +215,7 @@
         });
 
         canvas.addEventListener('mousemove', (e) => {
-            const offsetY = 25; // Adjust this value to move the trail up (increase for more upward shift)
+            const offsetY = 50; // Adjust this value to move the trail up (increase for more upward shift)
             trail.push(new TrailPoint(e.clientX, e.clientY - offsetY));
 
             particles.forEach(particle => {
