@@ -214,23 +214,25 @@
             canvas.height = document.querySelector('.hero-section').offsetHeight;
         });
 
-        const pushRadius = 75; // Reduce this value to decrease the push radius
+        const pushRadius = 75; // Radius within which the cursor can push particles
+        const offsetY = 50;     // Offset to adjust the trail position
 
         canvas.addEventListener('mousemove', (e) => {
-            trail.push(new TrailPoint(e.clientX, e.clientY));
+            trail.push(new TrailPoint(e.clientX, e.clientY - offsetY));
 
             particles.forEach(particle => {
                 const distance = Math.sqrt(
-                    (particle.x - e.clientX) ** 2 + (particle.y - e.clientY) ** 2
+                    (particle.x - e.clientX) ** 2 + (particle.y - (e.clientY - offsetY)) ** 2
                 );
 
-                if (distance < pushRadius) { // Use the new pushRadius value
-                    const angle = Math.atan2(particle.y - e.clientY, particle.x - e.clientX);
+                if (distance < pushRadius) {
+                    const angle = Math.atan2(particle.y - (e.clientY - offsetY), particle.x - e.clientX);
                     particle.vx += Math.cos(angle) * 0.1;
                     particle.vy += Math.sin(angle) * 0.1;
                 }
             });
         });
+
 
 
         init();
