@@ -214,7 +214,7 @@
             canvas.height = document.querySelector('.hero-section').offsetHeight;
         });
 
-        const pushRadius = 50; // Reduce this value to decrease the push radius
+        const pushRadius = 75; // Reduce this value to decrease the push radius
 
         canvas.addEventListener('mousemove', (e) => {
             trail.push(new TrailPoint(e.clientX, e.clientY));
