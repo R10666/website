@@ -96,7 +96,7 @@
 
         const particles = [];
         const trail = [];
-        const numParticles = 200;
+        const numParticles = 250;
         const maxDistance = 100;
         const trailLifetime = 1000;  // Trail lifetime in milliseconds
         const friction = 0.98;
@@ -214,23 +214,23 @@
             canvas.height = document.querySelector('.hero-section').offsetHeight;
         });
 
+        const pushRadius = 50; // Reduce this value to decrease the push radius
+
         canvas.addEventListener('mousemove', (e) => {
-            const offsetY = 50; // Adjust this value to move the trail up (increase for more upward shift)
-            trail.push(new TrailPoint(e.clientX, e.clientY - offsetY));
+            trail.push(new TrailPoint(e.clientX, e.clientY));
 
             particles.forEach(particle => {
                 const distance = Math.sqrt(
-                    (particle.x - e.clientX) ** 2 + (particle.y - e.clientY + offsetY) ** 2
+                    (particle.x - e.clientX) ** 2 + (particle.y - e.clientY) ** 2
                 );
 
-                if (distance < maxDistance * 2) {
-                    const angle = Math.atan2(particle.y - e.clientY + offsetY, particle.x - e.clientX);
+                if (distance < pushRadius) { // Use the new pushRadius value
+                    const angle = Math.atan2(particle.y - e.clientY, particle.x - e.clientX);
                     particle.vx += Math.cos(angle) * 0.1;
                     particle.vy += Math.sin(angle) * 0.1;
                 }
             });
         });
-
 
 
         init();
