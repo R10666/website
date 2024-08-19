@@ -67,6 +67,7 @@
         let playerColor = 'white';
         let botColor = 'black';
         let pieces = {}; // Object to store pieces and their positions
+        let selectedPiece = null; // For tracking the piece selected by the player
 
         const initialBoardSetup = [
             ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'],
@@ -75,13 +76,13 @@
             ['', '', '', '', '', '', '', ''],
             ['', '', '', '', '', '', '', ''],
             ['', '', '', '', '', '', '', ''],
-            ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
-            ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
+            ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
+            ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r']
         ];
 
         const pieceSymbols = {
-            'R': '♜', 'N': '♞', 'B': '♝', 'Q': '♛', 'K': '♚', 'P': '♟', // Black pieces
-            'r': '♖', 'n': '♘', 'b': '♗', 'q': '♕', 'k': '♔', 'p': '♙'  // White pieces
+            'R': '♖', 'N': '♘', 'B': '♗', 'Q': '♕', 'K': '♔', 'P': '♙', // White pieces
+            'r': '♜', 'n': '♞', 'b': '♝', 'q': '♛', 'k': '♚', 'p': '♟'  // Black pieces
         };
 
         function drawBoard() {
@@ -109,8 +110,9 @@
             playerColor = color;
             botColor = color === 'white' ? 'black' : 'white';
             initializeBoard();
+            drawBoard();
             if (playerColor === 'black') {
-                botMove();
+                botMove(); // Bot makes the first move if playing as black
             }
         }
 
@@ -120,7 +122,7 @@
                 for (let col = 0; col < 8; col++) {
                     const piece = initialBoardSetup[row][col];
                     if (piece) {
-                        pieces[`${row},${col}`] = playerColor === 'white' ? piece : piece.toLowerCase();
+                        pieces[`${row},${col}`] = piece;
                     }
                 }
             }
@@ -128,27 +130,44 @@
         }
 
         function onSquareClick(row, col) {
-            // Handle player move logic here
-            // For now, this just prints the clicked square
-            console.log(`Clicked on square: Row ${row}, Col ${col}`);
-            // Implement move logic
+            const position = `${row},${col}`;
+            const piece = pieces[position];
+
+            if (selectedPiece) {
+                // If a piece was already selected, move it to the clicked square
+                if (!piece || piece.toLowerCase() !== selectedPiece.piece.toLowerCase()) {
+                    pieces[`${selectedPiece.row},${selectedPiece.col}`] = ''; // Clear the old position
+                    pieces[position] = selectedPiece.piece; // Move piece to the new position
+                    selectedPiece = null; // Reset selected piece
+                    drawBoard(); // Redraw the board
+                    botMove(); // After player's move, bot makes a move
+                }
+            } else if (piece && (playerColor === 'white' ? piece === piece.toUpperCase() : piece === piece.toLowerCase())) {
+                // If no piece is selected, select this piece (must be player's piece)
+                selectedPiece = { piece, row, col };
+            }
         }
 
         function botMove() {
-            // Bot looks at all possible moves and picks one at random
+            // Get all possible moves for the bot
             let possibleMoves = [];
             for (let position in pieces) {
                 const [row, col] = position.split(',').map(Number);
-                if (pieces[position] && pieces[position].toLowerCase() === pieces[position]) {
-                    // Add bot move generation logic here, simple example:
-                    possibleMoves.push([row, col]);
+                const piece = pieces[position];
+
+                // Bot plays black pieces if player is white, and vice versa
+                if (piece && (botColor === 'black' ? piece === piece.toLowerCase() : piece === piece.toUpperCase())) {
+                    // Find all valid moves for the piece (this is just a placeholder example)
+                    possibleMoves.push({ piece, from: { row, col }, to: { row: Math.floor(Math.random() * 8), col: Math.floor(Math.random() * 8) } });
                 }
             }
 
+            // Select a random move from possible moves
             if (possibleMoves.length > 0) {
-                const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
-                console.log(`Bot moves piece at Row ${randomMove[0]}, Col ${randomMove[1]}`);
-                // Execute bot move logic
+                const move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+                pieces[`${move.from.row},${move.from.col}`] = ''; // Clear the old position
+                pieces[`${move.to.row},${move.to.col}`] = move.piece; // Move piece to new position
+                drawBoard(); // Redraw the board
             }
         }
 
