@@ -14,15 +14,19 @@
             margin-top: 10px;
         }
     </style>
-    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/chessboard-1.0.0.min.css">
+    <!-- Include chessboard.js and chess.js libraries via CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
 </head>
 <body>
     <h1 style="text-align: center;">Play Chess Against a Bot</h1>
     <div id="board"></div>
     <div id="status"></div>
 
-    <script src="https://unpkg.com/chess.js@0.12.0/chess.js"></script>
-    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/chessboard-1.0.0.min.js"></script>
+    <!-- Chess.js logic -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.12.0/chess.js"></script>
+    <!-- Chessboard.js to display the board -->
+    <script src="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+
     <script>
         const boardElement = document.getElementById('board');
         const statusElement = document.getElementById('status');
