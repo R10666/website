@@ -3,86 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chess Bot</title>
+    <title>Interactive Chess</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Assuming you have a styles.css file -->
     <style>
-        #board {
-            width: 400px;
-            margin: 20px auto;
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
         }
-        #status {
-            text-align: center;
-            margin-top: 10px;
+        #chess-container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+        #chessboard {
+            display: grid;
+            grid-template-columns: repeat(8, 60px);
+            grid-template-rows: repeat(8, 60px);
+            gap: 0;
+        }
+        .square {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        .white-square {
+            background-color: #eee;
+        }
+        .black-square {
+            background-color: #333;
+            color: #fff;
+        }
+        #controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
-    <!-- Include chessboard.js and chess.js libraries via CDN -->
-    <link rel="stylesheet" href="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
 </head>
 <body>
-    <h1 style="text-align: center;">Play Chess Against a Bot</h1>
-    <div id="board"></div>
-    <div id="status"></div>
-
-    <!-- Chess.js logic -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.12.0/chess.js"></script>
-    <!-- Chessboard.js to display the board -->
-    <script src="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    <div id="chess-container">
+        <div id="controls">
+            <button onclick="startGame('white')">Play as White</button>
+            <button onclick="startGame('black')">Play as Black</button>
+        </div>
+        <div id="chessboard"></div>
+    </div>
 
     <script>
-        const boardElement = document.getElementById('board');
-        const statusElement = document.getElementById('status');
-        
-        const boardConfig = {
-            draggable: true,
-            position: 'start',
-            onDrop: handleMove,
+        const chessboard = document.getElementById('chessboard');
+        let playerColor = 'white';
+        let botColor = 'black';
+        let pieces = {}; // Object to store pieces and their positions
+
+        const initialBoardSetup = [
+            ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'],
+            ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+            ['', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', ''],
+            ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+            ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
+        ];
+
+        const pieceSymbols = {
+            'R': '♜', 'N': '♞', 'B': '♝', 'Q': '♛', 'K': '♚', 'P': '♟', // Black pieces
+            'r': '♖', 'n': '♘', 'b': '♗', 'q': '♕', 'k': '♔', 'p': '♙'  // White pieces
         };
 
-        const board = Chessboard('board', boardConfig);
-        const game = new Chess();
+        function drawBoard() {
+            chessboard.innerHTML = '';
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const square = document.createElement('div');
+                    square.classList.add('square');
+                    square.classList.add((row + col) % 2 === 0 ? 'white-square' : 'black-square');
+                    square.dataset.row = row;
+                    square.dataset.col = col;
 
-        function handleMove(source, target) {
-            // See if the move is legal
-            const move = game.move({
-                from: source,
-                to: target,
-                promotion: 'q' // Auto-promote to queen
-            });
+                    const piece = pieces[`${row},${col}`];
+                    if (piece) {
+                        square.innerHTML = pieceSymbols[piece];
+                    }
 
-            // Illegal move
-            if (move === null) return 'snapback';
-
-            // Update the board and status
-            board.position(game.fen());
-            updateStatus();
-
-            // Make the AI move after a delay
-            window.setTimeout(makeAIMove, 250);
+                    square.addEventListener('click', () => onSquareClick(row, col));
+                    chessboard.appendChild(square);
+                }
+            }
         }
 
-        function makeAIMove() {
-            const possibleMoves = game.ugly_moves();
-            
-            // Game over
-            if (game.game_over()) return;
-
-            const randomIndex = Math.floor(Math.random() * possibleMoves.length);
-            game.ugly_move(possibleMoves[randomIndex]);
-
-            board.position(game.fen());
-            updateStatus();
+        function startGame(color) {
+            playerColor = color;
+            botColor = color === 'white' ? 'black' : 'white';
+            initializeBoard();
+            if (playerColor === 'black') {
+                botMove();
+            }
         }
 
-        function updateStatus() {
-            const status = game.in_checkmate() ? 'Checkmate!' :
-                           game.in_draw() ? 'Draw!' :
-                           game.in_stalemate() ? 'Stalemate!' :
-                           game.in_check() ? 'Check!' :
-                           `Next move: ${game.turn() === 'w' ? 'White' : 'Black'}`;
-
-            statusElement.innerHTML = status;
+        function initializeBoard() {
+            pieces = {};
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const piece = initialBoardSetup[row][col];
+                    if (piece) {
+                        pieces[`${row},${col}`] = playerColor === 'white' ? piece : piece.toLowerCase();
+                    }
+                }
+            }
+            drawBoard();
         }
 
-        updateStatus();
+        function onSquareClick(row, col) {
+            // Handle player move logic here
+            // For now, this just prints the clicked square
+            console.log(`Clicked on square: Row ${row}, Col ${col}`);
+            // Implement move logic
+        }
+
+        function botMove() {
+            // Bot looks at all possible moves and picks one at random
+            let possibleMoves = [];
+            for (let position in pieces) {
+                const [row, col] = position.split(',').map(Number);
+                if (pieces[position] && pieces[position].toLowerCase() === pieces[position]) {
+                    // Add bot move generation logic here, simple example:
+                    possibleMoves.push([row, col]);
+                }
+            }
+
+            if (possibleMoves.length > 0) {
+                const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+                console.log(`Bot moves piece at Row ${randomMove[0]}, Col ${randomMove[1]}`);
+                // Execute bot move logic
+            }
+        }
+
+        // Initialize board on page load
+        initializeBoard();
     </script>
 </body>
 </html>
