@@ -6,54 +6,123 @@
     <title>Contact Me</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
         .contact-container {
             display: flex;
             justify-content: space-between;
+            max-width: 1000px;
+            width: 100%;
             padding: 2em;
+            box-sizing: border-box;
         }
 
         .contact-info {
             flex: 1;
-            padding-right: 2em;
-            font-size: 1.2em;
+            margin-right: 2em;
+            padding: 2em;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .contact-info p {
+            margin: 0.5em 0;
+        }
+
+        .contact-form-container {
+            flex: 1;
+            padding: 2em;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form-container h2 {
+            margin-top: 0;
+            color: #333;
         }
 
         .contact-form {
-            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form label {
+            margin-bottom: 0.5em;
+            font-weight: bold;
         }
 
         .contact-form input,
         .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
+            padding: 0.75em;
+            margin-bottom: 1.5em;
             border-radius: 4px;
+            border: 1px solid #ccc;
             font-size: 1em;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
         }
 
         .contact-form button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
+            padding: 0.75em;
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 1em;
         }
 
         .contact-form button:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
+        }
+
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #333;
+            padding: 1em;
+            text-align: center;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1em;
         }
 
         .footer {
             margin-top: 2em;
             text-align: center;
+            color: #777;
+            font-size: 0.875em;
         }
     </style>
 </head>
 <body>
-    <!-- Top Bar -->
-    <div class="top-bar" style="position: sticky; top: 0; z-index: 1000;">
+    <div class="top-bar">
         <a href="index.html" class="top-bar-button">Home</a>
         <a href="projects.html" class="top-bar-button">Projects</a>
         <a href="contact.html" class="top-bar-button">Contact</a>
@@ -68,37 +137,35 @@
         </div>
     </div>
 
-    <!-- Contact Section -->
     <div class="contact-container">
         <div class="contact-info">
             <h2>Contact Information</h2>
-            <p><strong>Email:</strong> yourname@example.com</p>
-            <p><strong>Phone:</strong> (123) 456-7890</p>
-            <p><strong>Address:</strong> 123 Your Street, City, Country</p>
-            <!-- Add more contact information if needed -->
+            <p>Email: your-email@example.com</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Address: 123 Your Street, Your City, Your State, Your Country</p>
+            <!-- Add more contact details as needed -->
         </div>
 
-        <div class="contact-form">
+        <div class="contact-form-container">
             <h2>Leave a Message</h2>
-            <form id="contact-form" action="https://formspree.io/f/xvgpwdpq" method="POST">
-                <label for="name">Name *</label>
+            <form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form">
+                <label for="name">*Name:</label>
                 <input type="text" id="name" name="name" required>
 
-                <label for="email">Email *</label>
+                <label for="email">*Email:</label>
                 <input type="email" id="email" name="email" required>
 
-                <label for="title">Title</label>
+                <label for="title">Title:</label>
                 <input type="text" id="title" name="title">
 
-                <label for="message">Message *</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <label for="message">*Message:</label>
+                <textarea id="message" name="message" required></textarea>
 
                 <button type="submit">Send Message</button>
             </form>
         </div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
         <p class="footer-left">Created by ___</p>
         <p class="footer-right">&copy; 2024</p>
