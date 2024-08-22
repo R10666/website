@@ -3,10 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Webpage</title>
+    <title>Contact Me</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 2em;
+        }
+
+        .contact-info {
+            flex: 1;
+            padding-right: 2em;
+            font-size: 1.2em;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            margin-top: 2em;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    <!-- Top Bar -->
     <div class="top-bar" style="position: sticky; top: 0; z-index: 1000;">
         <a href="index.html" class="top-bar-button">Home</a>
         <a href="projects.html" class="top-bar-button">Projects</a>
@@ -22,7 +68,37 @@
         </div>
     </div>
 
-    
+    <!-- Contact Section -->
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p><strong>Email:</strong> yourname@example.com</p>
+            <p><strong>Phone:</strong> (123) 456-7890</p>
+            <p><strong>Address:</strong> 123 Your Street, City, Country</p>
+            <!-- Add more contact information if needed -->
+        </div>
+
+        <div class="contact-form">
+            <h2>Leave a Message</h2>
+            <form id="contact-form" action="https://formspree.io/f/xvgpwdpq" method="POST">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <div class="footer">
         <p class="footer-left">Created by ___</p>
         <p class="footer-right">&copy; 2024</p>
