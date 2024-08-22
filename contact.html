@@ -20,7 +20,7 @@
             color: #333;
             font-size: 1.2em;
             position: relative;
-            left: 60%;
+            left: 2%;
         }
 
         .contact-info h2 {
@@ -39,6 +39,7 @@
             padding: 2em;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 400px; /* Set a specific height */
         }
 
         .contact-form h2 {
@@ -81,6 +82,14 @@
         .contact-form button:hover {
             background-color: #555;
         }
+
+        /* Success message styling */
+        #success-message {
+            display: none;
+            margin-top: 1em;
+            color: green;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -112,7 +121,7 @@
         <!-- Contact Form -->
         <div class="contact-form">
             <h2>Leave a Message</h2>
-            <form action="https://formspree.io/f/{your-form-id}" method="POST">
+            <form id="contact-form" action="https://formspree.io/f/{your-form-id}" method="POST">
                 <label for="name">Name*</label>
                 <input type="text" id="name" name="name" required>
 
@@ -127,6 +136,9 @@
 
                 <button type="submit">Send</button>
             </form>
+
+            <!-- Success Message -->
+            <p id="success-message">Your message is sent. I will get back to you shortly.</p>
         </div>
     </div>
 
@@ -134,5 +146,17 @@
         <p class="footer-left">Created by ___</p>
         <p class="footer-right">&copy; 2024</p>
     </div>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Show the success message
+            document.getElementById('success-message').style.display = 'block';
+
+            // Optionally, reset the form
+            document.getElementById('contact-form').reset();
+        });
+    </script>
 </body>
 </html>
