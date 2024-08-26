@@ -267,7 +267,7 @@ body {
 }
 
 .about-me-text {
-    flex: 3; /* Takes up 3/4 of the space */
+    flex: 1.6; /* Takes up 3/4 of the space */
     margin-right: 2em;
 }
 
@@ -275,7 +275,7 @@ body {
     flex: 1; /* Takes up 1/4 of the space */
     background-color: #f9f9f9;
     padding: 1em;
-    border-radius: 8px;
+    border-radius: 18px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
