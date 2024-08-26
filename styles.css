@@ -267,7 +267,7 @@ body {
 }
 
 .about-me-text {
-    flex: 1.8; /* Takes up 3/4 of the space */
+    flex: 2; /* Takes up 3/4 of the space */
     margin-right: 2em;
 }
 
