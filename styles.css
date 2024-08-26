@@ -267,14 +267,14 @@ body {
 }
 
 .about-me-text {
-    flex: 1.6; /* Takes up 3/4 of the space */
+    flex: 1.8; /* Takes up 3/4 of the space */
     margin-right: 2em;
 }
 
 .about-me-hobbies {
     flex: 1; /* Takes up 1/4 of the space */
     background-color: #f9f9f9;
-    padding: 1em;
+    padding: 2em;
     border-radius: 18px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -285,6 +285,9 @@ body {
     margin: 0;
 }
 
+.about-me-hobbies h2 {
+    margin-top: 0; /* Ensure no extra margin at the top of the title */
+}
 
 
 /* Responsive Styles */
