@@ -296,8 +296,6 @@ body {
         width: 80%;
         padding-bottom: 80%;
         margin-bottom: 2em;
-        border-radius: 10px; /* Adjust the value to change the roundness */
-        overflow: hidden; /* Ensures that the image inside respects the border-radius */
     }
 
     .content {
@@ -315,4 +313,9 @@ body {
         text-align: center;
         margin-bottom: 0.5em;
     }
+}
+
+.image-button {
+    border-radius: 10px; /* Adjust the value to change the roundness */
+    overflow: hidden; /* Ensures that the image inside respects the border-radius */
 }
