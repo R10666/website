@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive World Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([20, 0], 2);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+        }).addTo(map);
+
+        // Load existing pins from the server
+        fetch('/api/getPins')
+            .then(response => response.json())
+            .then(pins => {
+                pins.forEach(pin => {
+                    L.marker([pin.lat, pin.lng]).addTo(map);
+                });
+            });
+
+        // Handle map clicks to add new pins
+        map.on('click', function(e) {
+            var latLng = e.latlng;
+            L.marker([latLng.lat, latLng.lng]).addTo(map);
+            savePin(latLng.lat, latLng.lng);
+        });
+
+        // Function to save a pin to the server
+        function savePin(lat, lng) {
+            fetch('/api/savePin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ lat: lat, lng: lng })
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Pin saved successfully.');
+                } else {
+                    console.error('Failed to save pin.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
