@@ -26,8 +26,8 @@
 
         .content-section {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
+            align-items: center; /* Center content vertically */
             margin-bottom: 2em;
         }
 
@@ -39,10 +39,18 @@
         .content-image {
             flex: 1;
             max-width: 50%;
+            display: flex;
+            justify-content: center; /* Center image horizontally */
         }
 
+        .content-image img {
+            max-width: 100%;
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Swap the order for odd sections */
         .content-section:nth-child(odd) .content-image {
-            order: -1; /* Swap the order for odd sections */
+            order: -1; /* Image on the left for odd sections */
         }
     </style>
 </head>
@@ -72,7 +80,6 @@
         </div>
 
         <div class="content-section">
-            
             <div class="content-image">
                 <img src="/images/placeholder.png" alt="Placeholder Image">
             </div>
