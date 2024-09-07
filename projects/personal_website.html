@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Website</title>
+    <title>3D printed Chess Set</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
         /* Extra styles for sticky bar and color change */
@@ -33,7 +33,7 @@
 
         .content-text {
             flex: 1;
-            margin-right: 2em;
+            margin-left: 2em;
         }
 
         .content-image {
@@ -48,18 +48,36 @@
             height: auto; /* Maintain aspect ratio */
         }
 
-        /* Swap the order for odd sections */
-        .content-section:nth-child(odd) .content-image {
-            order: -1; /* Image on the left for odd sections */
+        /* Align title and subtitle to the left */
+        .page-title {
+            text-align: left; /* Align to the left */
+            margin-bottom: 0; /* Ensure the title and subtitle are close together */
         }
 
         .page-subtitle {
-            color: orange; /* Set the color to orange */
-            font-size: 1.2em; /* Adjust the font size */
-            text-align: center; /* Center the subtitle */
-            margin-top: -0.5em; /* Adjust margin to reduce space between title and subtitle */
+            color: orange;
+            font-size: 1.2em;
+            text-align: left; /* Align to the left */
+            margin-top: 0; /* Remove margin above */
+            margin-bottom: 1em; /* Set appropriate margin below */
+            padding-bottom: 1em; /* Add padding under the subtitle */
         }
 
+        /* Reverse the order for even sections (second section) */
+        .content-section:nth-child(even) .content-text {
+            order: -1; /* Text on the right */
+            margin-left: 0; /* Reset margin */
+            margin-right: 2em; /* Add margin on the right */
+        }
+
+        /* Styling for footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 1em;
+            background-color: #333;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -77,25 +95,25 @@
         <h3 class="page-subtitle">2024 August</h3>
 
         <div class="content-section">
-            <div class="content-text">
-                <p>
-                    This is a paragraph on the left with the image on the right. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Proin vel lacus vitae turpis volutpat tincidunt a sit amet lorem.
-                </p>
-            </div>
             <div class="content-image">
                 <img src="/images/placeholder.png" alt="Placeholder Image">
+            </div>
+            <div class="content-text">
+                <p>
+                    This is the first paragraph with the image on the left and the text on the right. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Proin vel lacus vitae turpis volutpat tincidunt a sit amet lorem.
+                </p>
             </div>
         </div>
 
         <div class="content-section">
-            <div class="content-image">
-                <img src="/images/placeholder.png" alt="Placeholder Image">
-            </div>
             <div class="content-text">
                 <p>
-                    This is another paragraph, but now it's on the right with the image on the left. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    This is the second paragraph, but now the image is on the right and the text is on the left. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                 </p>
+            </div>
+            <div class="content-image">
+                <img src="/images/placeholder.png" alt="Placeholder Image">
             </div>
         </div>
     </div>
