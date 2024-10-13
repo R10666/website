@@ -104,10 +104,11 @@ body {
 .hero-image {
     position: relative;
     background-image: url('/images/projects_img/mood.png');
-    background-size: contain; /* Change 'cover' to 'contain' */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-size: cover; /* Keep cover for full coverage */
     background-position: center;
-    height: 300px;
+    background-repeat: no-repeat;
+    height: 30vw; /* Use viewport width to make the height scale with the screen size */
+    min-height: 200px; /* Set a minimum height to avoid it being too small on smaller screens */
     width: 100%;
     pointer-events: none; /* Allow mouse events to pass through */
 }
