@@ -104,7 +104,8 @@ body {
 .hero-image {
     position: relative;
     background-image: url('/images/projects_img/mood.png');
-    background-size: cover;
+    background-size: contain; /* Change 'cover' to 'contain' */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
     background-position: center;
     height: 300px;
     width: 100%;
