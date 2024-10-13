@@ -40,7 +40,8 @@
             flex: 1;
             max-width: 50%;
             display: flex;
-            justify-content: center; /* Center image horizontally */
+            flex-direction: column; /* Ensure image and description stack vertically */
+            align-items: center; /* Center image and description horizontally */
         }
 
         .content-image img {
@@ -48,7 +49,14 @@
             height: auto; /* Maintain aspect ratio */
         }
 
-        /* Align title and subtitle to the left */
+        .image-description {
+            text-align: center; /* Center the description text under the image */
+            margin-top: 0.5em; /* Space between the image and the description */
+            font-size: 0.9em; /* Adjust font size if needed */
+            color: #666; /* Set a color for the description text */
+        }
+
+        /* Align title, subtitle, and small heading to the left */
         .page-title {
             text-align: left; /* Align to the left */
             margin-bottom: 0; /* Ensure the title and subtitle are close together */
@@ -59,15 +67,22 @@
             font-size: 1.2em;
             text-align: left; /* Align to the left */
             margin-top: 0; /* Remove margin above */
-            margin-bottom: 1em; /* Set appropriate margin below */
-            padding-bottom: 1em; /* Add padding under the subtitle */
+            margin-bottom: 0.5em; /* Set appropriate margin below */
+            padding-bottom: 0.5em; /* Add padding under the subtitle */
         }
 
-        /* Reverse the order for even sections (second section) */
-        .content-section:nth-child(even) .content-text {
-            order: -1; /* Text on the right */
-            margin-left: 0; /* Reset margin */
-            margin-right: 2em; /* Add margin on the right */
+        /* Small gray heading style */
+        .page-small-heading {
+            color: gray;
+            font-size: 1em; /* Smaller font size */
+            text-align: left; /* Align to the left */
+            margin-top: 0; /* Remove margin above */
+            margin-bottom: 1.5em; /* Set margin below */
+        }
+
+        /* Reverse the order for even sections (image on the right, text on the left) */
+        .content-section:nth-child(even) {
+            flex-direction: row-reverse; /* Reverse the flex direction for even sections */
         }
 
         /* Styling for footer */
@@ -93,27 +108,53 @@
     <div class="content-container">
         <h1 class="page-title">Transformer Model</h1>
         <h3 class="page-subtitle">2024 March (WIP)</h3>
+        <h4 class="page-small-heading">Machine learning, python, transformer architecture</h4> <!-- New gray heading -->
 
         <div class="content-section">
-            <div class="content-image">
-                <img src="/images/placeholder.png" alt="Placeholder Image">
-            </div>
             <div class="content-text">
                 <p>
-                    This is the first paragraph with the image on the left and the text on the right. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Proin vel lacus vitae turpis volutpat tincidunt a sit amet lorem.
+                    This is largely still a work in progress, however I so far have a functional transformer model that I can use for training langauge translation models. The transformer is based on the origional transformer architerture from the paper <a href="https://arxiv.org/pdf/1706.03762">"attention is all you need"</a>. I coded it in python using the pytorch library and I am currenly testing it with the <a href="https://huggingface.co/datasets/Helsinki-NLP/opus_books">OPUS books database</a> from hugging face. 
                 </p>
+            </div>
+                        <div class="content-image">
+                <img src="/images/placeholder.png" alt="Placeholder Image">
+                <p class="image-description">Another description of the image on the left.</p> <!-- Image description -->
             </div>
         </div>
 
         <div class="content-section">
             <div class="content-text">
                 <p>
-                    This is the second paragraph, but now the image is on the right and the text is on the left. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    This is the second paragraph, but now the text is on the left and the image is on the right. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                 </p>
             </div>
             <div class="content-image">
                 <img src="/images/placeholder.png" alt="Placeholder Image">
+                <p class="image-description">Description of the image on the right.</p> <!-- Image description -->
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="content-text">
+                <p>
+                    This is the third paragraph with the image on the left and the text on the right again. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel lacus vitae turpis volutpat tincidunt.
+                </p>
+            </div>
+                        <div class="content-image">
+                <img src="/images/placeholder.png" alt="Placeholder Image">
+                <p class="image-description">Another description of the image on the left.</p> <!-- Image description -->
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="content-text">
+                <p>
+                    This is the fourth paragraph, but again the text is on the left and the image is on the right. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+            </div>
+            <div class="content-image">
+                <img src="/images/placeholder.png" alt="Placeholder Image">
+                <p class="image-description">Final description of the image on the right.</p> <!-- Image description -->
             </div>
         </div>
     </div>
