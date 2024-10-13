@@ -103,7 +103,7 @@ body {
 
 .hero-image {
     position: relative;
-    background-image: url('/images/placeholder.png');
+    background-image: url('/images/projects_img/mood.png');
     background-size: cover;
     background-position: center;
     height: 300px;
