@@ -113,17 +113,18 @@ body {
     pointer-events: none; /* Allow mouse events to pass through */
 }
 
-.hero-title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 2.5em;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    margin: 0;
+.hero-image {
+    position: relative;
+    background-image: url('/images/projects_img/mood.png');
+    background-size: contain; /* Change this from 'cover' to 'contain' to show the entire image */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 50vw; /* Increase this to make it taller while keeping it proportional to the screen size */
+    min-height: 400px; /* Set a larger minimum height to show more of the image on smaller screens */
+    width: 100%;
     pointer-events: none; /* Allow mouse events to pass through */
 }
+
 
 .content {
     flex: 1;
