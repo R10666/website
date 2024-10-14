@@ -107,7 +107,7 @@ body {
     background-size: contain; /* Change this from 'cover' to 'contain' to show the entire image */
     background-position: center;
     background-repeat: no-repeat;
-    height: 30vw; /* Increase this to make it taller while keeping it proportional to the screen size */
+    height: 40vw; /* Increase this to make it taller while keeping it proportional to the screen size */
     min-height: 300px; /* Set a larger minimum height to show more of the image on smaller screens */
     width: 100%;
     pointer-events: none; /* Allow mouse events to pass through */
