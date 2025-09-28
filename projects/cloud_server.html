@@ -89,40 +89,42 @@
         </a>
     </div>
 
+
+        <div class="content-section">
+            <div class="content-image">
+                <img src="/images/placeholder.png" alt="Placeholder Image">
+            </div>
+            <div class="content-text">
+                <p>
+                    I'm not a big fan of suscription based services, so I wasn't too keen on spending extra for cloud storage on icloud and google drive. Thus I made my own. The framework I decided to use was nextcloud as it was free and open source with a very active community. I also decided to self host it inside my garage as linux hosing serverice are also suscription based. For redundancy and improved read/write performance, I set up the server with a RAID 5 configuration using three 6TB HDD, providing a total usable capacity of 12TB and 6TB of parity. This also means the system can tolerate the failure of one drive without data loss.
+                </p>
+                <p>
+                    I ran Nextcloud on Apache2 as the main web server, with virtual hosts configured to separate services and SSL certificates to secure connections. I integrated Cloudflare for DNS management(DDNS) and wrote a Bash script that uses the Cloudflare API to automatically update “A” records whenever my dynamic public IP changes(The point was to keep cost down, so I did not want to pay 30 bucks a month for a static IP from my ISP). I included logging and error handling within the script and had it scheduled as a periodic cron job, that way my services stayed reachable from the internet without manual DNS adjustments. Along the way, I ran into some MIME type support issues for modern file formats. Later I also started using Nginx as a reverse proxy to improve performance and resource handling compared to a pure Apache setup.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="content-text">
+                <p>
+                    Since I was going to be away a lot, I made sure to have secure remote access. I configured my Ubuntu server as an SSH host, generated and managed public/private key pairs, and hardened the sshd_config by disabling password logins. This was pretty a serious setup as it exposes direct backend access to my home server on the internet, making it a potential target for malicious intrusion if not properly secured. I also forwarded the generic local ports to the server’s SSH service so I could log in remotely without exposing the machine directly to the internet. I also had some fun setting up a simple honey pot on the generic ports which I forwarded elsewhere. The tunnel was also assigned a domain instead of relying solely on my public IP, making the setup more secure and resilient against IP changes without opening ports on my router.
+
+                    Overall, the server worked very well. The UI was very user friendly and Nextcloud’s mobile app was especially handy. While upload speeds outside of New Zealand weren’t very fast, it didn’t affect my use case, since most uploads were for backup and redundancy rather than real-time work. I was also able to create individual accounts for my family and friends, allocating each of them their own space on the server.
+
+                    you can take a peak at the server <a href="nextcloud.inecdote.com">here</a>
+                </p>
+            </div>
+            <div class="content-image">
+                <img src="/images/placeholder.png" alt="Placeholder Image">
+            </div>
+        </div>
+    </div>
+
     <div class="footer">
         <p class="footer-left">Created by Robin</p>
         <p class="footer-right">&copy; <span id="year"></span></p>
     </div>
     <script src="/script.js"></script>
-
-        <div class="content-section">
-            <div class="content-image">
-                <img src="/images/placeholder.png" alt="Placeholder Image">
-            </div>
-            <div class="content-text">
-                <p>
-                    I'm not a big fan of suscription based services, so I wasn't too keen on spending extra for cloud storage on icloud and google drive. Thus I made my own. The framework I decided to use 
-                </p>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <div class="content-text">
-                <p>
-                    This is the second paragraph, but now the image is on the right and the text is on the left. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                </p>
-            </div>
-            <div class="content-image">
-                <img src="/images/placeholder.png" alt="Placeholder Image">
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <div class="footer-left">Created by Robin</div>
-        <div class="footer-right">©2024</div>
-    </div>
 
     <script>
         // JavaScript to change the background color when sticky
