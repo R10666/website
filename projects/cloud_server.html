@@ -108,8 +108,8 @@
                 </p>
             </div>
             <div class="content-image">
-                <img src="/images/placeholder.png" alt="Placeholder Image">
-                <p class="image-description">Cloud server running Nextcloud and RAID 5</p>
+                <img src="/images/projects_img/server.png" alt="cloud server">
+                <p class="image-description">My repurposed PC Cloud server running Nextcloud with RAID 5</p>
             </div>
         </div>
 
@@ -123,14 +123,36 @@
                     Overall, the server worked very well. The UI was very user-friendly and Nextcloud’s mobile app was especially handy. While upload speeds outside of New Zealand weren’t very fast, it didn’t affect my use case, since most uploads were for backup and redundancy rather than real-time work. I was also able to create individual accounts for my family and friends, allocating each of them their own space on the server.
                 </p>
                 <p>
+                    Some possible future plans for the server include migrating the services to Docker containers and setting up a proper VPN, which got more functionality and stronger security than my current tunneling setup.
+                </p>
+                <p>
                     You can take a peek at the server <a href="https://nextcloud.inecdote.com">here</a>.
                 </p>
             </div>
             <div class="content-image">
-                <img src="/images/placeholder.png" alt="Placeholder Image">
-                <p class="image-description">Remote access and SSH configuration</p>
+                <img src="/images/projects_img/NC_interface.png" alt="NC_homepage">
+                <p class="image-description">Typical home page of my cloud server</p>
             </div>
         </div>
+        
+        <h3 class="page-subtitle">2025 August update</h3>
+        <div class="content-section">
+            <div class="content-text">
+                <p>
+                    After running for two years with very little down time one of my old HDD has finally kicked the bucket. the system got corrupted and the server is currently offline. 
+
+                    I tried booting in but I got dropped into BusyBox with an error stating /dev/sdd4 had filesystem corruption and needed fsck. Due to the nature of the system actually running on a RAID-5 array, /dev/sdd4 was just a member disk, not the real filesystem. The actual root lived on /dev/md127, which was my assembled RAID device. Running fsck there confirmed the filesystem was clean, so hopefully all of my data could be recovered without any data loss since I have a RAID-5 set up. However since initramfs is very minimual, I can’t rebuild the RAID or fix the boot config from that shell. So far the only solution I've found is to boot from a live ubuntu USB and then assemble the RAID and then fix everything else.  
+                </p>
+                <p>
+                    I hope to have the server back up soon, but i've been real busy lately with other stuff, hopefully next time around I could also migrate all my services onto docker like I always wanted.
+                </p>
+            </div>
+            <div class="content-image">
+                <img src="/images/projects_img/fsck_repair.png" alt=" :( ">
+                <p class="image-description">Lookes like one of my hard drive corrupted</p>
+            </div>
+        </div>
+
     </div>
 
     <!-- Footer -->
