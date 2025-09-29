@@ -19,7 +19,6 @@
             background-color: #555; /* Change color when sticky */
         }
 
-        /* Adjust other styles if needed */
         .content-container {
             padding: 2em;
         }
@@ -27,7 +26,7 @@
         .content-section {
             display: flex;
             justify-content: center;
-            align-items: center; /* Center content vertically */
+            align-items: center;
             margin-bottom: 2em;
         }
 
@@ -40,37 +39,41 @@
             flex: 1;
             max-width: 50%;
             display: flex;
-            justify-content: center; /* Center image horizontally */
+            flex-direction: column;
+            align-items: center;
         }
 
         .content-image img {
             max-width: 100%;
-            height: auto; /* Maintain aspect ratio */
+            height: auto;
         }
 
-        /* Align title and subtitle to the left */
+        .image-description {
+            text-align: center;
+            margin-top: 0.5em;
+            font-size: 0.9em;
+            color: #666;
+        }
+
         .page-title {
-            text-align: left; /* Align to the left */
-            margin-bottom: 0; /* Ensure the title and subtitle are close together */
+            text-align: left;
+            margin-bottom: 0;
         }
 
         .page-subtitle {
             color: orange;
             font-size: 1.2em;
-            text-align: left; /* Align to the left */
-            margin-top: 0; /* Remove margin above */
-            margin-bottom: 1em; /* Set appropriate margin below */
-            padding-bottom: 1em; /* Add padding under the subtitle */
+            text-align: left;
+            margin-top: 0;
+            margin-bottom: 0.5em;
+            padding-bottom: 0.5em;
         }
 
-        /* Reverse the order for even sections (second section) */
-        .content-section:nth-child(even) .content-text {
-            order: -1; /* Text on the right */
-            margin-left: 0; /* Reset margin */
-            margin-right: 2em; /* Add margin on the right */
+        /* Reverse the order for even sections */
+        .content-section:nth-child(even) {
+            flex-direction: row-reverse;
         }
 
-        /* Styling for footer */
         .footer {
             display: flex;
             justify-content: space-between;
@@ -89,48 +92,56 @@
         </a>
     </div>
 
+    <!-- Page Header -->
+    <div class="content-container">
+        <h1 class="page-title">Self Hosted Cloud Server</h1>
+        <h3 class="page-subtitle">2023 August</h3>
 
+        <!-- First Section -->
         <div class="content-section">
-            <h1 class="page-title">Self hosted cloud server</h1>
-            <h3 class="page-subtitle">2023 August</h3>
-
-            <div class="content-image">
-                <img src="/images/placeholder.png" alt="Placeholder Image">
-            </div>
             <div class="content-text">
                 <p>
-                    I'm not a big fan of suscription based services, so I wasn't too keen on spending extra for cloud storage on icloud and google drive. Thus I made my own. The framework I decided to use was nextcloud as it was free and open source with a very active community. I also decided to self host it inside my garage as linux hosing serverice are also suscription based. For redundancy and improved read/write performance, I set up the server with a RAID 5 configuration using three 6TB HDD, providing a total usable capacity of 12TB and 6TB of parity. This also means the system can tolerate the failure of one drive without data loss.
+                    I'm not a big fan of subscription based services, so I wasn't too keen on spending extra for cloud storage on iCloud and Google Drive. Thus I made my own. The framework I decided to use was Nextcloud as it was free and open source with a very active community. I also decided to self-host it inside my garage as Linux hosting services are also subscription based. For redundancy and improved read/write performance, I set up the server with a RAID 5 configuration using three 6TB HDD, providing a total usable capacity of 12TB and 6TB of parity. This also means the system can tolerate the failure of one drive without data loss.
                 </p>
                 <p>
-                    I ran Nextcloud on Apache2 as the main web server, with virtual hosts configured to separate services and SSL certificates to secure connections. I integrated Cloudflare for DNS management(DDNS) and wrote a Bash script that uses the Cloudflare API to automatically update “A” records whenever my dynamic public IP changes(The point was to keep cost down, so I did not want to pay 30 bucks a month for a static IP from my ISP). I included logging and error handling within the script and had it scheduled as a periodic cron job, that way my services stayed reachable from the internet without manual DNS adjustments. Along the way, I ran into some MIME type support issues for modern file formats. Later I also started using Nginx as a reverse proxy to improve performance and resource handling compared to a pure Apache setup.
+                    I ran Nextcloud on Apache2 as the main web server, with virtual hosts configured to separate services and SSL certificates to secure connections. I integrated Cloudflare for DNS management (DDNS) and wrote a Bash script that uses the Cloudflare API to automatically update “A” records whenever my dynamic public IP changes (the point was to keep cost down, so I did not want to pay 30 bucks a month for a static IP from my ISP). I included logging and error handling within the script and had it scheduled as a periodic cron job, that way my services stayed reachable from the internet without manual DNS adjustments. Along the way, I ran into some MIME type support issues for modern file formats. Later I also started using Nginx as a reverse proxy to improve performance and resource handling compared to a pure Apache setup.
                 </p>
+            </div>
+            <div class="content-image">
+                <img src="/images/placeholder.png" alt="Placeholder Image">
+                <p class="image-description">Cloud server running Nextcloud and RAID 5</p>
             </div>
         </div>
 
+        <!-- Second Section -->
         <div class="content-section">
-            <div class="content-image">
-                <img src="/images/placeholder.png" alt="Placeholder Image">
-            </div>
             <div class="content-text">
                 <p>
-                    Since I was going to be away a lot, I made sure to have secure remote access. I configured my Ubuntu server as an SSH host, generated and managed public/private key pairs, and hardened the sshd_config by disabling password logins. This was pretty a serious setup as it exposes direct backend access to my home server on the internet, making it a potential target for malicious intrusion if not properly secured. I also forwarded the generic local ports to the server’s SSH service so I could log in remotely without exposing the machine directly to the internet. I also had some fun setting up a simple honey pot on the generic ports which I forwarded elsewhere. The tunnel was also assigned a domain instead of relying solely on my public IP, making the setup more secure and resilient against IP changes without opening ports on my router.
-
-                    Overall, the server worked very well. The UI was very user friendly and Nextcloud’s mobile app was especially handy. While upload speeds outside of New Zealand weren’t very fast, it didn’t affect my use case, since most uploads were for backup and redundancy rather than real-time work. I was also able to create individual accounts for my family and friends, allocating each of them their own space on the server.
-
-                    you can take a peak at the server <a href="nextcloud.inecdote.com">here</a>
+                    Since I was going to be away a lot, I made sure to have secure remote access. I configured my Ubuntu server as an SSH host, generated and managed public/private key pairs, and hardened the <code>sshd_config</code> by disabling password logins. This was a serious setup as it exposes direct backend access to my home server on the internet, making it a potential target for malicious intrusion if not properly secured. I also forwarded the generic local ports to the server’s SSH service so I could log in remotely without exposing the machine directly to the internet. I also had some fun setting up a simple honey pot on the generic ports which I forwarded elsewhere. The tunnel was also assigned a domain instead of relying solely on my public IP, making the setup more secure and resilient against IP changes without opening ports on my router.
                 </p>
+                <p>
+                    Overall, the server worked very well. The UI was very user-friendly and Nextcloud’s mobile app was especially handy. While upload speeds outside of New Zealand weren’t very fast, it didn’t affect my use case, since most uploads were for backup and redundancy rather than real-time work. I was also able to create individual accounts for my family and friends, allocating each of them their own space on the server.
+                </p>
+                <p>
+                    You can take a peek at the server <a href="https://nextcloud.inecdote.com">here</a>.
+                </p>
+            </div>
+            <div class="content-image">
+                <img src="/images/placeholder.png" alt="Placeholder Image">
+                <p class="image-description">Remote access and SSH configuration</p>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <div class="footer">
         <p class="footer-left">Created by Robin</p>
         <p class="footer-right">&copy; <span id="year"></span></p>
     </div>
-    <script src="/script.js"></script>
 
+    <script src="/script.js"></script>
     <script>
-        // JavaScript to change the background color when sticky
+        // Sticky bar color change
         window.onscroll = function() {makeSticky()};
 
         var topBar = document.getElementById("topBar");
