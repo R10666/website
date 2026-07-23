@@ -5,28 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About me</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Ensure the canvas covers the entire hero section */
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; /* Ensure canvas is behind the content */
-        }
-
-        /* Ensure hero content is on top of the canvas */
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-    </style>
 </head>
 
 <body>
     <!-- Top Bar -->
-    <div class="top-bar" style="position: sticky; top: 0; z-index: 1000;">
+    <div class="top-bar">
         <a href="index.html" class="top-bar-button">Home</a>
         <a href="projects.html" class="top-bar-button">Projects</a>
         <a href="contact.html" class="top-bar-button">Contact</a>
@@ -34,25 +17,25 @@
         <div class="dropdown">
             <button class="dropbtn">More</button>
             <div class="dropdown-content">
-                <a href="page5.html">work</a>
-                <a href="page6.html">in</a>
-                <a href="page7.html">progress</a>
+                <span class="dropdown-content-disabled">work</span>
+                <span class="dropdown-content-disabled">in</span>
+                <span class="dropdown-content-disabled">progress</span>
             </div>
         </div>
     </div>
 
     <!-- Hero Section with Interactive Background -->
-    <div class="hero-section index-hero" style="position: relative; padding: 4em 1em;">
+    <div class="hero-section index-hero">
         <canvas id="hero-canvas"></canvas>
-        <div class="hero-content" style="display: flex; align-items: center;">
-            <img src="/images/River.jpg" alt="About Me Image" style="width: 250px; height: 250px; margin-right: 20px; border-radius: 50%;">
-            <div class="hero-text" style="flex: 2; padding-left: 2em;">
-                <div style="text-align: center;">
-                    <h1 style="font-size: 2.5em; color: #333; margin-top: -1em;">
-                        <img src="/images/hello.gif" alt="Gif" style="max-width: 50px; vertical-align: bottom; margin-bottom: 0;"> Hello, I'm Robin Teng
+        <div class="hero-content hero-greeting">
+            <img src="/images/River.jpg" alt="About Me Image" class="hero-avatar">
+            <div class="hero-text hero-greeting-text">
+                <div class="hero-greeting-title-wrap">
+                    <h1 class="hero-greeting-title">
+                        <img src="/images/hello.gif" alt="Gif" class="hero-greeting-gif"> Hello, I'm Robin Teng
                     </h1>
                 </div>
-                <p style="font-size: 1.2em; color: #555;">
+                <p>
                     Welcome to my website, I made this as a personal project to tinker with and document some of the cool stuff i'm doing. 
                 </p>
             </div>
@@ -60,47 +43,44 @@
     </div>
 
     <!-- Content Section with Normal White Background -->
-    <div class="content-container" style="background-color: white; padding: 2em 2.5em;">
-        <h2 style="text-align: left; font-size: 2em; margin-bottom: 1.5em; color: #333;">More About Me</h2>
+    <div class="about-me-section">
+        <h2>More About Me</h2>
         <div class="about-me">
             <div class="about-me-text">
-            <div style="display: flex; align-items: flex-start;">
-                <!-- Image on the left -->
-                <img src="/images/Cleanroom_3.jpg" alt="About Me Image" style="width: 250px; height: auto; margin-right: 20px; border-radius: 8px;">
-                
-                <!-- Text on the right -->
-                <p style="font-size: 1.2em; color: #555; padding-left: 20px;">
-                    <!-- <img src="/images/hello-there.gif" alt="Gif" style="max-width: 180px; border-radius: 8px;"> -->
-                    Hello there! I'm a 20 year old student hailing from Auckland, New Zealand. I'm currenly doing my undergrad at UCSB, majoring in electrical engineering and minoring in physics. I specialise in semiconductors and machine learning as I find them very impactful and very COOL!
-                    <br>
-                    <br>
-                    I'm an avid enjoyer of tinkering and making things, so I consider myself a pretty hands on person. I have cleanroom, machining and various CAD and coding experiances. My dream is to one day make something new that can benefit the world.
-                 </p>
+                <div class="about-me-text-row">
+                    <!-- Image on the left -->
+                    <img src="/images/Cleanroom_3.jpg" alt="About Me Image" class="about-me-photo">
+
+                    <!-- Text on the right -->
+                    <p class="about-me-bio">
+                        <!-- <img src="/images/hello-there.gif" alt="Gif" style="max-width: 180px; border-radius: 8px;"> -->
+                        Hello there! I'm a 20 year old student hailing from Auckland, New Zealand. I'm currenly doing my undergrad at UCSB, majoring in electrical engineering and minoring in physics. I specialise in semiconductors and machine learning as I find them very impactful and very COOL!
+                        <br>
+                        <br>
+                        I'm an avid enjoyer of tinkering and making things, so I consider myself a pretty hands on person. I have cleanroom, machining and various CAD and coding experiances. My dream is to one day make something new that can benefit the world.
+                    </p>
+                </div>
             </div>
-            </div>
-            <div class="about-me-hobbies" style="margin-top: -6em; width: 600px; max-width: 100%; height: 500px; border: 0px solid #ccc; overflow-y: auto; box-sizing: border-box;">
-                <h2 style="color: #333;">My Hobbies</h2>
-                <ul style="font-size: 1.2em; color: #555;">
-                    <li style="margin-bottom: 20px;">Music - I like many, won't list them here but I play:
-                        <ul style="list-style-type: circle;">
+            <div class="about-me-hobbies">
+                <h2>My Hobbies</h2>
+                <ul>
+                    <li>Music - I like many, won't list them here but I play:
+                        <ul>
                             <li>Piano - I can also tune and restring pianos</li>
                             <li>Drums - used to play in a band</li>
                         </ul>
                     </li>
-                    <li style="margin-bottom: 20px;">Chess - I'm around 1700 rated, play me on:
-                        <ul style="list-style-type: circle;">
-                            <li><a href="https://www.chess.com/member/rob10666">Chess.com</a></li>
-                            <li><a href="https://lichess.org/@/rob10666">Lichess</a></li>
+                    <li>Chess - I'm around 1700 rated, play me on:
+                        <ul>
+                            <li><a href="https://www.chess.com/member/rob10666" target="_blank" rel="noopener noreferrer">Chess.com</a></li>
+                            <li><a href="https://lichess.org/@/rob10666" target="_blank" rel="noopener noreferrer">Lichess</a></li>
                         </ul>
                     </li>
-                    <li style="margin-bottom: 20px;">DIY - I like making all sorts of stuff, checkout my <a href="projects.html">projects</a> page to see some of the rad stuff I've done</li>
-                    <li style="margin-bottom: 20px;">Reading - I recommend "Flowers for Algernon"</li>
-                    <li>Sports - I enjoy football(soccer) and boxing, my favorite boxer is Manny Pacquiao<o/li>
+                    <li>DIY - I like making all sorts of stuff, checkout my <a href="projects.html">projects</a> page to see some of the rad stuff I've done</li>
+                    <li>Reading - I recommend "Flowers for Algernon"</li>
+                    <li>Sports - I enjoy football(soccer) and boxing, my favorite boxer is Manny Pacquiao</li>
                 </ul>
             </div>
-
-
-
         </div>
     </div>
 
@@ -116,8 +96,7 @@
     <script>
         const canvas = document.getElementById('hero-canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = document.querySelector('.hero-section').offsetHeight;
+        const heroSection = document.querySelector('.hero-section');
 
         const particles = [];
         const trail = [];
@@ -212,7 +191,28 @@
             }
         }
 
+        // Size the canvas to match its actual container (not the raw window),
+        // and rescale existing particles proportionally so a resize doesn't
+        // strand them off-screen or bunch them in a corner.
+        function resizeCanvas() {
+            const oldWidth = canvas.width;
+            const oldHeight = canvas.height;
+
+            canvas.width = heroSection.clientWidth;
+            canvas.height = heroSection.offsetHeight;
+
+            if (oldWidth && oldHeight && particles.length) {
+                const scaleX = canvas.width / oldWidth;
+                const scaleY = canvas.height / oldHeight;
+                particles.forEach(particle => {
+                    particle.x *= scaleX;
+                    particle.y *= scaleY;
+                });
+            }
+        }
+
         function init() {
+            resizeCanvas();
             for (let i = 0; i < numParticles; i++) {
                 const x = Math.random() * canvas.width;
                 const y = Math.random() * canvas.height;
@@ -234,31 +234,32 @@
             requestAnimationFrame(animate);
         }
 
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = document.querySelector('.hero-section').offsetHeight;
-        });
+        window.addEventListener('resize', resizeCanvas);
 
         const pushRadius = 80; // Radius within which the cursor can push particles
-        const offsetY = 50;     // Offset to adjust the trail position
 
+        // Convert the mouse position into canvas-relative coordinates using
+        // getBoundingClientRect, which is recalculated fresh on every move —
+        // this keeps tracking accurate no matter how far the page is scrolled.
         canvas.addEventListener('mousemove', (e) => {
-            trail.push(new TrailPoint(e.clientX, e.clientY - offsetY));
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            trail.push(new TrailPoint(mouseX, mouseY));
 
             particles.forEach(particle => {
                 const distance = Math.sqrt(
-                    (particle.x - e.clientX) ** 2 + (particle.y - (e.clientY - offsetY)) ** 2
+                    (particle.x - mouseX) ** 2 + (particle.y - mouseY) ** 2
                 );
 
                 if (distance < pushRadius) {
-                    const angle = Math.atan2(particle.y - (e.clientY - offsetY), particle.x - e.clientX);
+                    const angle = Math.atan2(particle.y - mouseY, particle.x - mouseX);
                     particle.vx += Math.cos(angle) * 0.1;
                     particle.vy += Math.sin(angle) * 0.1;
                 }
             });
         });
-
-
 
         init();
     </script>
